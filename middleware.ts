@@ -1,5 +1,3 @@
-import { next } from '@vercel/edge';
-
 export default function middleware(req: Request) {
   const authHeader = req.headers.get('authorization');
 
@@ -7,9 +5,12 @@ export default function middleware(req: Request) {
     const auth = authHeader.split(' ')[1];
     const [user, pwd] = atob(auth).split(':');
 
-    // 🔑 Set your desired credentials here
-    if (user === 'admin' && pwd === 'Workbench1!') {
-      return next();
+    // 🔑 Set your credentials here
+    if (user === 'admin' && pwd === 'bodyshop360') {
+      return new Response(null, {
+        status: 200,
+        headers: { 'x-middleware-next': '1' },
+      });
     }
   }
 
@@ -20,3 +21,7 @@ export default function middleware(req: Request) {
     },
   });
 }
+
+export const config = {
+  matcher: '/:path*',
+};
