@@ -1,0 +1,1878 @@
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+/* ========================================
+   Phone Frame Container
+   ======================================== */
+.screen {
+  width: 411px;
+  height: 780px;
+  border-radius: 8px;
+  background: #f5f7fa;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  position: absolute; /* keep your centering method */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-family: "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* critical: drawer must anchor to the phone frame */
+  position: absolute;
+
+}
+
+/* ========================================
+   Header
+   ======================================== */
+.header {
+  position: sticky;
+  top: 0;
+  height: 88px;
+  background: #004b85;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  gap: 8px;
+  z-index: 10;
+  border-bottom: 1px solid #e8ecf0;
+}
+
+/* Navigation back button */
+.nav-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 20px;
+  color: #ffffff;
+  transition: background 0.15s ease;
+}
+
+.nav-back:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.nav-back:active {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.vehicle-thumb {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  border-radius: 999px;
+}
+
+.job-id {
+  color: #ffffff;
+  letter-spacing: 0.3px;
+  font-size: 26px;
+  letter-spacing: 0;
+  font-weight: 600;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+
+/* ========================================
+   Scrollable Content
+   ======================================== */
+.content {
+  /* FIX: header is 72px (your old calc used 52px) */
+  height: calc(780px - 72px);
+  overflow-y: auto;
+  background: #ffffff;
+
+  /* room so content doesnâ€™t sit under the drawer */
+  padding-bottom: 140px;
+  box-sizing: border-box;
+}
+
+/* Hide scrollbar but keep functionality */
+.content::-webkit-scrollbar {
+  width: 0;
+}
+
+/* ========================================
+   Stage Info Bar
+   ======================================== */
+.stage-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 16px;
+  background: white;
+  border-bottom: solid 1px #e6e7ea;
+}
+
+.stage-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+.stage-number {
+  font-size: 12px;
+  color: #837e7f;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.stage-name {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a2b3c;
+  letter-spacing: -0.3px;
+}
+
+.stage-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.allocated, .so__allocated {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #686a6c;
+  font-weight: 500;
+  border: solid 1px #e5e7ea;
+  padding: 0px 8px;
+  border-radius: 4px;
+}
+
+/* Status chip */
+.status-chip {
+
+  display: flex;
+align-items: center;
+gap: 8px;
+font-size: 14px;
+color: #686a6c;
+font-weight: 500;
+padding: 0px 8px;
+border-radius: 4px;
+border: 1px solid #e5e7ea;
+height: 24px;
+letter-spacing: 0.25px;
+}
+
+.status-chip.in-progress {
+  background: white;
+  color: #696a6c;
+  border-color: #e5e6e9;
+}
+
+.status-chip.overdue {
+  background: #ffebee;
+  color: #d32f2f;
+  border-color: #ef9a9a;
+  font-weight: 700;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background: #0b5cab;
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* ========================================
+   Timer Section
+   ======================================== */
+.timer-section {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background-color: #e3f2fd;
+  border-bottom: #dde2e9 solid 1px;
+}
+
+.timer-container {
+  position: relative;
+  width: 220px;
+  height: 220px;
+}
+
+.progress-ring {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-circle {
+  transition: stroke-dashoffset 1s linear, stroke 0.3s ease;
+}
+
+.timer-inner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.timer-icon {
+  width: 188px;
+  height: 188px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 29px 23px rgba(0, 0, 0, 0.25);
+}
+
+/* makes the LOCK icon not tiny (and also keeps play/pause readable if theyâ€™re material icons) */
+.timer-icon .material-icons {
+  font-size: 172px;
+  color: #686A6C;
+  line-height: 1;
+}
+
+.timer-icon span {
+  font-size: 132px;
+  color: #0c5cac;
+}
+
+.time-display {
+  font-size: 52px;
+  font-weight: 900;
+  color: #696a6c;
+  letter-spacing: 3px;
+  font-variant-numeric: tabular-nums;
+  transition: color 0.3s ease;
+}
+
+.time-display.overdue {
+  color: #d3302f;
+}
+
+/* Owner / reference row */
+.owner-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+}
+
+.owner-icon {
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  background: #2196f3;
+  color: #fff;
+}
+
+.owner-icon.unassigned {
+  background: #94a3b8;
+}
+
+/* Owner badge with initials (StageViewer) */
+.owner-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: #2196f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.owner-badge .owner-initials {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  line-height: 1;
+  color: #fff;
+}
+
+/* Owner meta container (name + started line) */
+.owner-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.owner-started {
+  font-size: 13px;
+  color: #667085;
+  font-weight: 400;
+}
+
+.owner-initials {
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 0.5px;
+  line-height: 1;
+}
+
+.owner-icon .material-icons {
+  font-size: 22px;
+  line-height: 1;
+  color: #fff;
+}
+
+.owner-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.owner-strong {
+  font-weight: 700;
+}
+
+/* ========================================
+   Action Buttons
+   ======================================== */
+.actions {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background: #eff1f4;
+  border-top: solid 1px #e5e7ea;
+  border-bottom: solid 1px #e5e7ea;
+  height: auto;
+  min-height: 88px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.btn-pause,
+.btn-signoff {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn-pause {
+  background: #f5732a;
+  color: white;
+}
+
+
+
+.btn-pause:active {
+  transform: scale(0.98);
+}
+
+.btn-pause.resumed {
+  background: #22c55e;
+}
+
+.btn-signoff {
+  background: #0076d1;
+  color: white;
+}
+
+
+
+.btn-signoff:active {
+  transform: scale(0.98);
+}
+
+.unlocked-controls {
+  display: flex;
+  gap: 16px;
+  width: 100%;
+  align-items: stretch;
+  box-sizing: border-box;
+}
+
+.unlocked-controls > button {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Stage status banner */
+.stage-status-banner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 19px 20px;
+  border-radius: 4px;
+  border: 1px solid #dde3ea;
+  background: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #1a2b3c;
+  text-align: center;
+}
+
+
+
+/* Only the drawer HANDLE should block touch scrolling */
+.shift-drawer-handle {
+  touch-action: none;
+}
+
+/* If you currently have touch-action:none on the whole drawer, kill it */
+.shift-drawer {
+  touch-action: auto;
+}
+/* ========================================
+   Task Section
+   ======================================== */
+.task-section {
+  background: white;
+  margin: 0;
+}
+
+.task-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: white;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  border-bottom: 1px solid #e8ecf0;
+  border-radius: 0;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.task-header:hover {
+  background: transparent;
+}
+
+.task-header:focus,
+.task-header:focus-visible,
+.task-header:active {
+  outline: none;
+  box-shadow: none;
+}
+
+.task-title {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.task-title-text {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a2b3c;
+}
+
+.task-count {
+  font-size: 12px;
+  color: #6b7c8a;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+
+.chevron {
+  color: #696a6c;
+  transition: transform 0.25s ease;
+      font-size: 56px;
+}
+
+.chevron.open {
+  transform: rotate(180deg);
+}
+
+/* Task list */
+.task-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.task-item {
+  border-bottom: 1px solid #f0f3f6;
+}
+
+.task-item:last-child {
+  border-bottom: none;
+}
+
+.task-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+  min-height: 48px;
+}
+
+.task-checkbox:hover {
+  background: #fafbfc;
+}
+
+.task-checkbox input {
+  display: none;
+}
+
+.checkmark {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #d0d7de;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  background: white;
+  position: relative;
+}
+
+.checkmark::before {
+  content: "";
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.checkmark.checked {
+  background: #0b5cab;
+  border-color: #0b5cab;
+}
+
+.task-text {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #1a2b3c;
+}
+
+.task-text.completed {
+  color: #9ca3af;
+  text-decoration: line-through;
+}
+
+/* App background outside the phone */
+body {
+  background-color: black;
+}
+
+/* ========================================
+   SHIFT DRAWER (FINAL)
+   ======================================== */
+.shift-drawer {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid #dde3ea;
+  border-radius: 16px 16px 0 0;
+  z-index: 30;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  will-change: transform;
+}
+
+.shift-drawer.closed {
+  height: 76px;
+  transform: translateY(calc(100% - 76px));
+}
+
+.shift-drawer.open {
+  height: 147px;
+  transform: translateY(0);
+  transition: transform 220ms;
+  will-change: transform;
+}
+
+.shift-drawer-handle {
+  height: 16px;
+  padding: 10px 0 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom, #f7f8fa, #ffffff);
+  border-bottom: 1px solid rgba(230, 231, 234, 0.8);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  outline: none;
+  box-shadow: none;
+  border-radius: 16px 16px 0 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.shift-drawer.dragging .shift-drawer-handle {
+  cursor: grabbing;
+}
+
+.shift-drawer-grab {
+  width: 84px;
+  height: 6px;
+  border-radius: 999px;
+  background: #c6cdd6;
+}
+
+.shift-drawer-collapsed {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 16px;
+    cursor: pointer;
+    padding-bottom: 8px;
+}
+
+
+.shift-kpi {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.shift-drawer .material-icons {
+  color: #ffffff;
+  font-size: 20px;
+}
+.shift-kpi .material-icons {
+  color: #667085;
+}
+
+.shift-drawer-text {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: #1f2a37;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
+.shift-drawer-expanded {
+  padding: 0 16px 16px 16px;
+  max-height: calc(220px - 76px);
+  overflow: auto;
+}
+
+.shift-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  padding-top: 8px;
+}
+
+.shift-actions .btn-pause,
+.shift-actions .btn-signoff {
+  flex: 1;
+  white-space: nowrap;
+}
+
+/* ========================================
+   MODALS
+   ======================================== */
+.modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 50;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 340px;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 8px 16px;
+}
+
+.modal-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1a2b3c;
+  letter-spacing: -0.2px;
+}
+
+.modal-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 999px;
+}
+
+.modal-close .material-icons {
+  color: #6b7c8a;
+  font-size: 22px;
+}
+
+.modal-body {
+  padding: 6px 16px 16px 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #6b7c8a;
+}
+
+.modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px 16px 16px;
+}
+
+.modal-btn-primary {
+  flex: 1;
+  border: none;
+  border-radius: 4px;
+  padding: 14px 14px;
+  background: #0076d1;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+
+.modal-btn-secondary {
+flex: 1;
+    border: none;
+    border-radius: 4px;
+    padding: 14px 14px;
+    background: transparent;
+    color: #0076d1;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+    border: solid 1px #0076d1;
+    cursor: pointer;
+    transition: background 0.15s ease, transform 0.15s ease;
+  }
+
+.modal-btn-primary:hover {
+  background: #0a4f96;
+}
+
+.modal-btn-primary:active {
+  transform: scale(0.99);
+}
+
+.nav-back .material-icons {
+  font-size: 44px;
+  color: #ffffff;
+}
+
+.timer-section .owner-icon.unassigned {
+  background: #94a3b8;
+  opacity: 0.75;
+}
+
+.timer-section .owner-icon {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 26px;
+  background: #94a3b8;
+  opacity: 0.85;
+}
+
+.shift-drawer-handle {
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+}
+
+.shift-drawer.dragging .shift-drawer-handle {
+  cursor: grabbing;
+}
+
+
+
+
+/* ========================================
+   SHIFT DRAWER â€” KPI TEXT ON ONE LINE
+   ======================================== */
+
+.shift-kpi-text{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+  white-space:nowrap;
+}
+
+.shift-kpi-title,
+.shift-kpi-value{
+  display:inline;
+  white-space:nowrap;
+  line-height:1;
+}
+
+/* optional: stop either side from wrapping */
+.shift-kpi-title{ flex:0 0 auto; }
+.shift-kpi-value{ flex:0 0 auto; font-weight: 500;}
+
+
+
+
+/* =========================
+   STAGE OVERVIEW
+   ========================= */
+
+.so {
+  background: #f7f9fb;
+}
+
+/* ---------- Header ---------- */
+
+.so-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+
+
+/* ---------- Banner ---------- */
+
+.so-banner {
+  margin: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #f1f3f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.so-banner__left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.so-banner__progress {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.so-banner__progress-num {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a2b3c;
+  line-height: 1;
+}
+
+.so-banner__progress-sep {
+  font-size: 20px;
+  font-weight: 500;
+  color: #667085;
+}
+
+.so-banner__progress-total {
+  font-size: 20px;
+  font-weight: 500;
+  color: #667085;
+}
+
+.so-banner__progress-label {
+    margin-left: 6px;
+    font-size: 16px;
+    color: #667085;
+    font-weight: 500;
+  }
+
+.so-banner__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.so-banner__stat {
+
+
+  padding: 3px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+      font-size: 12px;
+    font-weight: 600;
+    padding: 3px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    display: inline-flex;
+    gap: 4px;
+    border: 1px solid transparent;
+    flex-shrink: 0;
+    letter-spacing: 0.2px;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    padding: 0px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+    BORDER: SOLID 1PX #e6e7ef;
+}
+
+.so-banner__stat--live {
+  background: #e7f0ff;
+  color: #0b5fff;
+}
+
+.so-banner__stat--paused {
+  background: #fff3e0;
+  color: #b54708;
+}
+
+.so-banner__stat--overdue {
+  background: #fef3f2;
+  color: #b42318;
+}
+
+.so-bannerTitle {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.so-bannerSub {
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 4px;
+}
+
+.so-bannerKpi {
+  font-size: 18px;
+  font-weight: 700;
+  text-align: right;
+}
+
+.so-bannerKpiLabel {
+  font-size: 12px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* ---------- Filters ---------- */
+
+
+
+.so-filtersLabel {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.so-filterPills {
+  display: flex;
+  gap: 8px;
+}
+
+.so-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+      margin: 6px 6px 6px 0px;
+}
+
+.so-pill--active {
+  color: #0b5fff;
+  border-color: #0b5fff;
+}
+
+/* ---------- Stage List ---------- */
+
+.so-list {
+  background: #fff;
+  border-top: 1px solid #e6e9ef;
+}
+
+.so-row {
+  display: block;
+  padding: 16px;
+  border-bottom: 1px solid #e6e9ef;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ---------- Top Row ---------- */
+
+.so-rowTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* STAGE NUMBER */
+.so-stageLabel {
+  font-family: Roboto, system-ui, sans-serif;
+  font-weight: 500;          /* Roboto Medium */
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: #667085;
+}
+
+/* ---------- Meta ---------- */
+
+.so-rowMeta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.so-allocated {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #667085;
+  padding: 4px 10px;
+      display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 4px 10px;
+    display: inline-flex;
+    gap: 4px;
+    color: #667085;
+    BORDER: SOLID 1px #e6e8ef;
+    padding: 2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 20px;
+    padding: 0 6px;
+    border-radius: 4px;
+    font-weight: 400;
+    letter-spacing: 0.2px;
+    font-size: 12px;
+}
+
+.so-allocatedIcon {
+  font-size: 16px;
+}
+
+/* ---------- Stage Title ---------- */
+
+.so-stageName {
+  margin-top: 8px;
+  font-family: Roboto, system-ui, sans-serif;
+  font-weight: 700;          /* Roboto 700 */
+  font-size: 22px;
+  color: #1d2939;
+}
+
+/* ---------- Bottom Row ---------- */
+
+.so-rowBottom {
+  margin-top: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* OWNER / STATUS LINE */
+.so-stageLine {
+  font-family: Roboto, system-ui, sans-serif;
+  font-weight: 400;          /* Roboto Regular */
+  font-size: 16px;
+  color: #667085;
+}
+
+/* ---------- View CTA ---------- */
+
+.so-view {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #0b5fff;
+  font-weight: 500;
+}
+
+.so-viewIcon {
+  font-size: 18px;
+}
+
+.so-viewChevron {
+  font-size: 18px;
+}
+
+/* ---------- Chips ---------- */
+
+.so-chip, .jl-chip--notstarted { 
+  font-family: Roboto, system-ui, sans-serif;
+  font-weight: 400;          /* Roboto Regular */
+  font-size: 14px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  border: solid 1px #e6e8ef;
+}
+
+.so-chip--notstarted {
+  background: #f2f4f7;
+  color: #667085;
+  font-weight: 600;
+  font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.so-chip--inprogress {
+  background: #e7f0ff;
+  color: #0b5fff;
+  font-weight: 600;
+  font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.so-chip--paused {
+  background: #fff3e0;
+  color: #b54708;
+  font-weight: 600;
+  font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+
+}
+
+.so-chip--completed {
+  background: #ecfdf3;
+  color: #027a48;
+  font-weight: 600;
+  font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+.so-chip--overdue {
+  background: #fef3f2;
+  color: #b42318;
+  font-weight: 600;
+  font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+}
+
+
+
+/* ========================================
+   Stage Overview (so__)
+   ======================================== */
+
+.so__list {
+  background: #fff;
+  border-top: 4px solid #eef1f4;
+}
+
+.so__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  padding: 16px;
+  text-decoration: none;
+  color: inherit;
+
+  border-bottom: 4px solid #eef1f4;
+}
+
+.so__left {
+  flex: 1;
+  min-width: 0;
+}
+
+.so__meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.so__stageNumber {
+  font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-weight: 500; /* Roboto Medium */
+  font-size: 14px;
+  letter-spacing: 0.4px;
+  color: #98a2b3;
+}
+
+.so__metaRight {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.so__allocated {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+}
+
+.so__allocatedIcon {
+  font-size: 18px;
+  color: #667085;
+}
+
+.so__allocatedText {
+  font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: #667085;
+}
+
+.so__chip {
+  font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-weight: 400; /* Roboto Regular */
+  font-size: 14px;
+  color: #667085;
+}
+
+.so__titleRow {
+
+
+   
+}
+
+.so__stageTitle {
+  font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  color: #1a2b3c;
+  padding-bottom: 4px;
+}
+
+.so__subRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+
+  margin-top: 8px;
+}
+
+.so__subText {
+  font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: #667085;
+}
+
+.so__owner {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+
+  font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-weight: 400;
+  font-size: 16px; /* owner text */
+  color: #667085;
+
+  flex-shrink: 0;
+}
+
+/* Owner row in stage list (StageOverview) */
+.so__ownerRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.so__ownerBadge {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #2196f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.so__ownerInitials {
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.2px;
+  line-height: 1;
+  color: #fff;
+}
+
+.so__ownerIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  background: #2196f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.so__ownerIcon--unassigned {
+  background: #94a3b8;
+}
+
+.so__ownerIcon .material-icons {
+  font-size: 16px;
+  color: #fff;
+}
+
+.so__ownerMeta {
+  display: contents;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.so__ownerName {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a2b3c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.so__ownerStarted {
+  font-size: 14px;
+  font-weight: 400;
+  color: #667085;
+}
+
+
+
+.so__ownerValue {
+  color: #1a2b3c;
+}
+
+.so__cta {
+  display: inline-flex;
+  align-items: center;
+  color: #0076d1;
+  font-family: Roboto, system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+
+  flex-shrink: 0;
+}
+
+.so__ctaIcon,
+.so__ctaChevron {
+  font-size: 32px;
+  margin-top: -9px;
+}
+
+:root{
+  --shift-drawer-peek: 20px;
+}
+
+/* only control layout stuff, not transform */
+.shift-drawer-collapsed{
+  min-height: var(--shift-drawer-peek);
+}
+
+.nav-reset{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:40px;
+  height:40px;
+  border:none;
+  background:transparent;
+  cursor:pointer;
+  border-radius:20px;
+  color:#fff;
+}
+
+.nav-reset:hover{ background: rgba(0,0,0,0.06); }
+.nav-reset:active{ background: rgba(0,0,0,0.12); }
+
+
+/* Paste this at the VERY BOTTOM of src/App.css */
+
+/* --- Timer ring must sit behind the face, but still visible --- */
+.timer-container {
+  position: relative;
+}
+
+.progress-ring {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.timer-inner {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+}
+
+/* Face sits above ring, but smaller than container so ring shows */
+.timer-icon {
+  width: 188px;   /* keep your intended size */
+  height: 188px;
+  z-index: 3;
+}
+
+/* Stop generic span rules from making icons massive */
+.timer-icon span {
+  font-size: inherit;
+}
+
+/* Only scale the actual center icon explicitly */
+.timer-icon .material-icons {
+  font-size: 120px;   /* tweak if you want */
+  line-height: 1;
+}
+
+
+
+
+
+
+
+
+
+/* === SWIPE IMPROVEMENTS === */
+
+/* Ensure content area handles touch correctly */
+.content {
+  /* Allow vertical scrolling, let JS handle horizontal */
+  touch-action: pan-y;
+  
+  /* Prevent text selection during swipe */
+  -webkit-user-select: none;
+  user-select: none;
+  
+  /* Hint to browser for transform animations */
+  will-change: transform;
+  
+  /* Ensure transform origin is centered */
+  transform-origin: center center;
+}
+
+/* Prevent any child elements from interfering with pointer events during swipe */
+.content > * {
+  pointer-events: auto;
+}
+
+/* Actions area - prevent layout shift by using min-height */
+.actions {
+  min-height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+/* Stage status banner - consistent sizing */
+.stage-status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 48px;
+  padding: 24px 16px;
+  box-sizing: border-box;
+}
+
+/* Buttons container styling */
+.actions .btn-pause,
+.actions .btn-signoff {
+  flex: 1;
+  min-height: 48px;
+}
+
+
+
+
+
+/* ============================================================
+   CAROUSEL FIX PATCH - Add this at the END of App.css
+   
+   This patch fixes:
+   1. Content visibility (Task List / Parts List disappearing)
+   2. Opacity only affecting preview panels, not current
+   3. Proper vertical scrolling within panels
+   4. Correct height chain so content isn't clipped
+   ============================================================ */
+
+/* --- Reset conflicting rules from earlier in the file --- */
+
+/* The carousel container: fills available space below header */
+.stage-carousel {
+  position: relative;
+  width: 100%;
+  /* Key fix: use calc to get exact remaining height */
+  height: calc(780px - 72px); /* screen height minus header */
+  overflow: hidden;
+  touch-action: pan-y;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* The sliding track: 3 panels wide, fills container height */
+.stage-track {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  will-change: transform;
+  /* Remove any default transition - JS controls this */
+}
+
+/* Each panel: takes 1/3 of track (= 100% of viewport), scrolls vertically */
+.stage-panel {
+  flex: 0 0 calc(100% / 3); /* exactly one viewport width */
+  width: calc(100% / 3);
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  /* Reset any transforms from earlier rules */
+  transform: none !important;
+}
+
+/* The content wrapper inside each panel */
+.stage-panel-content {
+  /* Let content flow naturally and be scrollable */
+  min-height: 100%;
+  padding-bottom: 160px; /* room for shift drawer */
+  box-sizing: border-box;
+  /* Current panel: full opacity */
+  opacity: 1;
+  /* Subtle background so it looks like a "page" */
+  background: #f5f7fa;
+}
+
+/* Preview panels: subtle fade + micro-shift for smooth "glide" feel */
+.stage-panel-content.is-preview {
+  opacity: 0.55;
+  transform: translateX(2px);
+  pointer-events: none;
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+/* Current panel: ensure no leftover transform, smooth settle */
+.stage-panel-content:not(.is-preview) {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+/* During drag: disable track transition so it follows finger exactly */
+.stage-carousel.is-dragging .stage-track {
+  transition: none !important;
+}
+
+/* Grabbing cursor feedback */
+.stage-carousel.is-dragging {
+  cursor: grabbing;
+}
+
+/* Remove the edge shadows that can look like Tinder */
+.stage-carousel::before,
+.stage-carousel::after {
+  display: none;
+}
+
+/* Ensure timer section, task section etc. don't have transforms that break stacking */
+.timer-section,
+.task-section,
+.actions {
+  transform: none;
+  position: relative;
+}
+
+/* Make sure the stage-bar is visible */
+.stage-bar {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* Carousel must not block pointer events on interactive children */
+.stage-carousel {
+  touch-action: pan-y;
+}
+
+
+
+.job-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 10px;
+  flex-shrink: 0;
+}
+
+
+/* ========================================
+   FILTER PILLS - HORIZONTAL SCROLL
+   ======================================== */
+
+.so-filters-wrapper {
+  position: relative;
+  width: 100%;
+  height: 40px;
+  overflow: visible;
+  margin-bottom: 16px;
+}
+
+
+
+
+.so-filters {
+  display: flex;
+  padding: 0 16px 16px;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 16px;
+  padding-right: 56px;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  box-sizing: border-box;
+  touch-action: pan-x;
+   flex-wrap: nowrap;         /* add this */
+  position: relative;
+  z-index: 2;   
+}
+
+
+
+
+
+.so-filters::-webkit-scrollbar {
+  display: none;
+}
+
+.so-filters-fade {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 40px;
+  width: 56px;
+  background: linear-gradient(to right, rgba(245, 247, 250, 0) 0%, rgba(245, 247, 250, 1) 70%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.so-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #d0d5dd;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
+  flex: 0 0 auto;
+  cursor: pointer;
+}
+
+.so-pill--active {
+  color: #0b5fff;
+  border-color: #0b5fff;
+}
+
+.so-filters-wrapper {
+  overflow: hidden;          /* was visible */
+}
+
+
+/* StageOverview needs native horizontal panning for filter chips */
+.content.content--allow-x {
+  touch-action: pan-x pan-y; /* allow horizontal + vertical */
+}
+
+
+/* ========================================
+   STAGE OWNERS BANNER (StageOverview)
+   Paste at bottom of App.css
+   ======================================== */
+
+.so-banner {
+  margin: 16px;
+  padding: 16px;
+  border-radius: 12px;
+  background: #f1f3f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.so-banner__left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+
+.so-banner__title {
+    font-size: 12px;
+    font-weight: 600;
+    color: #667085;
+    /* text-transform: uppercase; */
+    letter-spacing: 0.5px;
+    ont-size: 26px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.4px;
+    margin: 0;
+    color: #1a2b3c;
+    font-size: 26px;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -0.4px;
+    margin: 0;
+    color: #1a2b3c;
+    float: left;
+  }
+
+.so-banner__owners {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+      width: 100%;
+}
+
+.so-banner__avatars {
+  display: flex;
+  align-items: center;
+}
+
+.so-banner__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.so-banner__avatar-initials {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.3px;
+}
+
+.so-banner__avatar--unassigned {
+  background: #94a3b8;
+}
+
+.so-banner__avatar--unassigned .material-icons {
+  font-size: 18px;
+  color: #fff;
+}
+
+.so-banner__names {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a2b3c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.so-banner__right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  display: inline-grid;
+}
+
+.so-banner__icon {
+  font-size: 24px;
+  color: #667085;
+  text-align: end;
+}
+
+.so-banner__kpi {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.so-banner__kpi-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a2b3c;
+  line-height: 1;
+}
+
+.so-banner__kpi-label {
+  font-size: 10px;
+  font-weight: 600;
+  color: #667085;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+}
+
