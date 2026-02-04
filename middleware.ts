@@ -6,7 +6,7 @@ export default function middleware(req: Request) {
     const [user, pwd] = atob(auth).split(':');
 
     // 🔑 Set your credentials here
-    if (user === 'admin' && pwd === 'bodyshop360') {
+    if (user === 'admin' && pwd === 'Workbench1!') {
       return new Response(null, {
         status: 200,
         headers: { 'x-middleware-next': '1' },
